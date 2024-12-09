@@ -3,7 +3,7 @@ import Link from "next/link";  // Import Link from Next.js
 
 import { useState } from "react"; // Import useState for toggling hamburger menu
 import { FaHeart, FaSearch } from "react-icons/fa";
-import { FaCartShopping, FaPerson } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
 import { MdPerson } from "react-icons/md";
 
 export default function Navbar() {
