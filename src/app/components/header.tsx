@@ -3,7 +3,7 @@ import { FaEnvelope, FaFacebook, FaInstagram, FaPhone, FaTwitter, FaYoutube } fr
 
 export default function BlueHeader() {
   return (
-    <div className="lg:block hidden w-full h-[58px] bg-[#252B42]">
+    <div className="lg:block hidden w-[1437px] h-[58px] bg-[#252B42]">
       <div className="flex justify-between items-center w-full h-full px-[24px]">
         {/* Left section: Contact Info */}
         <div className="flex gap-[10px]">
