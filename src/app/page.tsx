@@ -6,7 +6,6 @@ import Hero from "./components/hero";
 import Navbar from "./components/navbar";
 import ProductCard from "./components/productcard";
 import White from "./components/white";
-import footer from "./components/footer";
 
 export default function Home() {
   return (
