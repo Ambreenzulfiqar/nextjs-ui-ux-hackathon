@@ -1,31 +1,29 @@
 import Image from "next/image";
 import greenman from "../../../public/images/shop-hero-2-png-picture-1.png";
 
-export default function GreenDiv(){
-    return(
-        <div className="w-[1440px] h-[709px] rounded-[5px] absolute bg-[#23856D] mt-[-130px] top-[3200px] border">
-            <div className="w-[1440px] h-[709px]">
-             <div className="w-[1440px] h-[709px]">
-                <div className="w-[1036px] h-[711px] absolute left-[209px] py-[112px] flex  gap-[80px]">
-                    <div className="w-[1049px] h-[599px] flex  gap-[30px]">
-                        <div className="w-[509px] h-[432px] pt-[60px] flex flex-col gap-[30px]">
-                            <h4 className="w-[154px] h-[30px] font-Montserrat font-normal text-[20px] leading-[30px] text-white">SUMMER 2020</h4>
-                            <h1 className="w-[509px] h-[160px] font-Montserrat font-bold text-[58px] leading-[80px] text-white">Vita Classic Product</h1>
-                            <p className="w-[341px] h-[40px] font-Montserrat font-medium text-[14px] leading-[20px] text-white">We know how large objects will act, We know how are objects will act, We know</p>
-                            <div className="w-[295px] h-[52px] flex gap-[34px]">
-                                <h3 className="w-[77px] h-[32px] font-Montserrat font-bold text-[24px] leading-[32px] text-white">$16.48</h3>
-                                <button className="w-[184px] h-[52px] rounded-[5px] px-[40px] bg-[#2DC071] py-[15px] flex gap-[10px]">
-                                    <h1 className="w-[104px] h-[22px] font-Montserrat text-[14px] leading-[22px] flex text-white justify-center ">ADD TO CART</h1>
-                                </button>
-                            </div>
-                        </div>
-                        <div className="w-[443px] h-[685px] overflow-hidden">
-                          <Image src={greenman} alt="picman" width={500} height={500}/>
-                        </div>
-                    </div>
-                </div>
-             </div>
+export default function GreenDiv() {
+  return (
+    <div className="w-full max-w-[1440px] h-[709px] rounded-[5px] bg-[#23856D] mt-[-130px] border flex justify-center items-center px-4 md:px-0 overflow-hidden">
+      <div className="w-full max-w-[1440px] h-[709px] flex justify-center items-center">
+        <div className="w-full max-w-[1036px] h-auto md:h-[711px] flex flex-col md:flex-row gap-[40px] md:gap-[80px] items-center py-[60px] md:py-[112px]">
+          <div className="w-full max-w-[509px] flex flex-col gap-[20px] md:gap-[30px] text-center md:text-left">
+            <h4 className="text-[20px] leading-[30px] text-white font-Montserrat font-normal">SUMMER 2020</h4>
+            <h1 className="text-[32px] md:text-[58px] leading-[40px] md:leading-[80px] text-white font-Montserrat font-bold">Vita Classic Product</h1>
+            <p className="text-[14px] leading-[20px] text-white font-Montserrat font-medium max-w-[341px] mx-auto md:mx-0">
+              We know how large objects will act, We know how are objects will act, We know
+            </p>
+            <div className="flex flex-col md:flex-row gap-[20px] md:gap-[34px] justify-center md:justify-start items-center">
+              <h3 className="text-[24px] leading-[32px] text-white font-Montserrat font-bold">$16.48</h3>
+              <button className="w-[184px] h-[52px] rounded-[5px] px-[40px] bg-[#2DC071] py-[15px] flex items-center justify-center gap-[10px]">
+                <h1 className="text-[14px] leading-[22px] text-white font-Montserrat">ADD TO CART</h1>
+              </button>
             </div>
+          </div>
+          <div className="w-full max-w-[443px] h-auto md:h-[685px] flex justify-center overflow-hidden">
+            <Image src={greenman} alt="picman" width={500} height={500} className="object-cover" />
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
