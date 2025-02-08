@@ -1,24 +1,20 @@
 import React from 'react'
+import Icons from './icons'
 
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 
-const Work = () => {
+const Company = () => {
   return (
-    <div className='flex flex-col md:flex-row items-center justify-center bg-[#2A7CC7]'>
-      <div className='max-w-[500px] mx-auto p-10 text-white space-y-5'>
-        <h2>WORK WITH US</h2>
-        <h3 className='text-3xl font-bold'>Now Let&apos;s grow Yours</h3>
-        <p>
-          The gradual accumulation of information about atomic and small-scale behavior during the first quarter of the 20th 
-        </p>
-        <Button variant={'outline'} className='bg-[#2A7CC7]'>Button</Button>
-      </div>
-      <div>
-        <Image src='/work.png' alt='work' width={500} height={500} />
-      </div>
+    <div className='flex flex-col items-center justify-center bg-[#fafafa]'>
+    <div className='max-w-[500px] mx-auto p-10 text-center'>
+    <h2 className='text-3xl font-bold p-4'>Big Companies Are Here</h2>
+        <p>Problems trying to resolve the conflict between 
+        the two major realms of Classical physics: Newtonian mechanics </p>
+    </div>
+   <div className='max-w-4xl mx-auto'>
+   <Icons />
+   </div>
     </div>
   )
 }
 
-export default Work
+export default Company

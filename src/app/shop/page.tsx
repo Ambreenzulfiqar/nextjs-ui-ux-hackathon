@@ -8,11 +8,11 @@ import ShopCard from '../components/ShopCard';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import ProductCard from '../components/productcard';
 const items = [
-  { imageUrl: "/item1.png", title: "Cloths", itemCount: 5 },
-  { imageUrl: "/hero-img.jpg", title: "Cloths", itemCount: 5 },
-  { imageUrl: "/item3.png", title: "Cloths", itemCount: 5 },
-  { imageUrl: "/item4.png", title: "Cloths", itemCount: 5 },
-  { imageUrl: "/item5.png", title: "Cloths", itemCount: 5 },
+  { imageUrl: "/images/item1.png", title: "Cloths", itemCount: 5 },
+  { imageUrl: "/images/hero1.jpg", title: "Cloths", itemCount: 5 },
+  { imageUrl: "/images/item3.png", title: "Cloths", itemCount: 5 },
+  { imageUrl: "/images/item4.png", title: "Cloths", itemCount: 5 },
+  { imageUrl: "/images/item2.png", title: "Cloths", itemCount: 5 },
 ];
 
 const shop = () => {

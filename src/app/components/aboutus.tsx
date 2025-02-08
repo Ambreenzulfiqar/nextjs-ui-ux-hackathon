@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
       <div className="md:w-1/2 flex justify-center mt-8 md:mt-0 relative">
         <div className="relative w-full max-w-md">
           <Image
-            src="/shopping-cart-girl.png" // Replace with actual image path
+            src="/images/about.png" // Replace with actual image path
             alt="Shopping Girl"
             width={500}
             height={500}

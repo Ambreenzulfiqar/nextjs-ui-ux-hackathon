@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button } from './ui/button'
+
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 const Work = () => {
   return (
@@ -14,7 +15,7 @@ const Work = () => {
         <Button variant={'outline'} className='bg-[#2A7CC7]'>Button</Button>
       </div>
       <div>
-        <Image src='/work.png' alt='work' width={500} height={500} />
+        <Image src='/images/girl.png' alt='work' width={500} height={500} />
       </div>
     </div>
   )

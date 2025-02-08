@@ -15,7 +15,7 @@ const ShopCard: React.FC<ShopCardProps> = ({ imageUrl, title, itemCount }) => {
         alt={title}
         width={400}
         height={300}
-        className="object-cover w-full h-full"
+        className="object-cover w-full h-full aspect-square"
       />
       <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center text-white">
         <h2 className="text-xl font-bold uppercase">{title}</h2>

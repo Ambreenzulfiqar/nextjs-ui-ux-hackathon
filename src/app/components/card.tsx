@@ -9,7 +9,7 @@ type CardTextProps = {
   image: string;
 };
 
-const CardText: React.FC<CardTextProps> = ({ title, description, Price, image }) => {
+const CardText: React.FC<CardTextProps> = ({ title, description, Price, }) => {
   return (
     <div className="w-[239px] h-[188px] py-[25px] px-[25px] flex flex-col items-center justify-center gap-[10px]">
       <h5 className="w-full font-Montserrat font-bold text-[16px] leading-[24px] text-center text-[#252B42]">

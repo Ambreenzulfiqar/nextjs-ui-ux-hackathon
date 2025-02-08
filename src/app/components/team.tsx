@@ -9,19 +9,19 @@ const teamMembers = [
     id: 1,
     username: 'Angela Davis',
     profession: 'Developer',
-    image: '/team1.png'
+    image: '/images/team1.png'
   },
   {
     id: 2,
     username: 'Jolly Smith',
     profession: 'Designer',
-    image: '/team2.jpg'
+    image: '/images/team2.png'
   },
   {
     id: 3,
     username: 'Bob Johnson',
     profession: 'Manager',
-    image: '/team3.jpg'
+    image: '/images/team3.png'
   }
 ]
 

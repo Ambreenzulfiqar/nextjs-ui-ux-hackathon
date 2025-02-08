@@ -6,7 +6,8 @@ import StatsSection from '../components/StateSection'
 import Video from '../components/video'
 import Company from '../components/company'
 import Team from '../components/team'
-import Work from '../components/company'
+import Work from '../components/work'
+
 
 const about = () => {
   return (

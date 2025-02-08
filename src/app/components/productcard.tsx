@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import CardText from "./card";
 import { client } from "@/sanity/lib/client";
@@ -26,10 +27,9 @@ export default function ProductCard() {
             title,
             description,
             price,
-            "productImage":productImage.asset->url  // Ensure this path is correct
+            "productImage": productImage.asset->url  // Ensure this path is correct
           }`
         );
-        console.log(data); // Inspect the fetched data
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -59,26 +59,27 @@ export default function ProductCard() {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px]">
           {products.length > 0 ? (
             products.map((product) => (
-              <div key={product._id} className="w-[238px] h-[615px] mx-auto">
-                <div className="w-full h-full">
-                  <div className="w-[239px] ">
-                    {/* Make sure the imageUrl is valid */}
-                    <Image
-                      src={product.productImage || "/images/filter.png"} // Fallback image
-                      alt={product.title}
-                      width={500}
-                      height={500}
-                      className="object-cover aspect-square"
+              <Link key={product._id} href={`/product/${product._id}`} passHref>
+                <div className="w-[238px] h-[615px] mx-auto cursor-pointer">
+                  <div className="w-full h-full">
+                    <div className="w-[239px]">
+                      <Image
+                        src={product.productImage || "/images/filter.png"} // Fallback image
+                        alt={product.title}
+                        width={500}
+                        height={500}
+                        className="object-cover aspect-square"
+                      />
+                    </div>
+                    <CardText
+                      title={product.title}
+                      description={product.description}
+                      Price={product.price} // Correct prop name for price
+                      image={product.productImage || "/images/default-product-image.png"} // Fallback image
                     />
                   </div>
-                  <CardText
-                    title={product.title}
-                    description={product.description}
-                    Price={product.price} // Correct prop name for price
-                    image={product.productImage || "/images/default-product-image.png"} // Fallback if imageUrl is missing
-                  />
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <p>Loading products...</p>

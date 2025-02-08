@@ -8,12 +8,12 @@ interface ImageItem {
 
 // Define the array with the type
 const iconImages: ImageItem[] = [
-  { Picture: "/icon1.png" },
-  { Picture: "/icon2.png" },
-  { Picture: "/icon3.png" },
-  { Picture: "/icon4.png" },
-  { Picture: "/icon5.png" },
-  { Picture: "/icon6.png" },
+  { Picture: "/images/icon1.png" },
+  { Picture: "/images/icon2.png" },
+  { Picture: "/images/icon3.png" },
+  { Picture: "/images/icon4.png" },
+  { Picture: "/images/icon5.png" },
+  { Picture: "/images/icon6.png" },
 ];
 
 const Icons = () => {
