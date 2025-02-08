@@ -17,19 +17,31 @@ type Product = {
 
 export default function ProductCard() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 8; // Number of products per page
+  const [totalProducts, setTotalProducts] = useState(0);
+  const totalPages = Math.ceil(totalProducts / pageSize);
 
+  // Fetch products with pagination
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const data: Product[] = await client.fetch(
-          `*[_type == "product"]{
-            _id,
-            title,
-            description,
-            price,
-            "productImage": productImage.asset->url  // Ensure this path is correct
-          }`
-        );
+        const start = (currentPage - 1) * pageSize;
+
+        // Fetch total product count
+        const total = await client.fetch(`count(*[_type == "product"])`);
+        setTotalProducts(total);
+
+        // Fetch paginated products
+        const query = `*[_type == "product"] | order(_createdAt desc) [${start}...${start + pageSize}]{
+          _id,
+          title,
+          description,
+          price,
+          "productImage": productImage.asset->url
+        }`;
+
+        const data: Product[] = await client.fetch(query);
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -37,11 +49,12 @@ export default function ProductCard() {
     };
 
     getProducts();
-  }, []);
+  }, [currentPage]); // ✅ Refetch when page changes
 
   return (
-    <div className="w-full left-0 flex justify-center">
-      <div className="w-[1124px] py-[80px] flex flex-col gap-[80px]">
+    <div className="w-full flex justify-center">
+      <div className="w-[1124px] py-[80px] flex flex-col gap-[40px]">
+        
         {/* Text Section */}
         <div className="w-full flex flex-col gap-[10px] justify-center items-center">
           <h4 className="font-Montserrat font-normal text-[20px] leading-[30px] text-[#737373]">
@@ -74,16 +87,46 @@ export default function ProductCard() {
                     <CardText
                       title={product.title}
                       description={product.description}
-                      Price={product.price} // Correct prop name for price
-                      image={product.productImage || "/images/default-product-image.png"} // Fallback image
+                      Price={product.price}
+                      image={product.productImage || "/images/default-product-image.png"}
                     />
                   </div>
                 </div>
               </Link>
             ))
           ) : (
-            <p>Loading products...</p>
+            <p className="text-center text-gray-500">Loading products...</p>
           )}
+        </div>
+
+        {/* Pagination Section */}
+        <div className="flex justify-center items-center gap-4 mt-6">
+          {/* Previous Button */}
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
+              currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+            }`}
+          >
+            Previous
+          </button>
+
+          {/* Page Info */}
+          <span className="text-gray-700 text-lg">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          {/* Next Button */}
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
+              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+            }`}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
