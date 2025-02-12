@@ -8,8 +8,11 @@ import { client } from "@/sanity/lib/client";
 
 // Define the Product type
 type Product = {
-  price: string;
-  _id: string;
+  quantity: number;
+  stock: number;
+
+  price: number;
+  id: string;
   title: string;
   description: string;
   productImage: string; // The image field from Sanity
@@ -72,7 +75,7 @@ export default function ProductCard() {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px]">
           {products.length > 0 ? (
             products.map((product) => (
-              <Link key={product._id} href={`/product/${product._id}`} passHref>
+              <Link key={product.id} href={`/product/${product.id}`} passHref>
                 <div className="w-[238px] h-[615px] mx-auto cursor-pointer">
                   <div className="w-full h-full">
                     <div className="w-[239px]">
@@ -87,9 +90,8 @@ export default function ProductCard() {
                     <CardText
                       title={product.title}
                       description={product.description}
-                      Price={product.price}
-                      image={product.productImage || "/images/default-product-image.png"}
-                    />
+                      price={product.price}
+                      image={product.productImage || "/images/default-product-image.png"} id={product.id} quantity={product.quantity} stock={product.stock}                    />
                   </div>
                 </div>
               </Link>
