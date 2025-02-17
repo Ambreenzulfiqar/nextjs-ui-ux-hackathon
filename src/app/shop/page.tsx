@@ -6,7 +6,8 @@ import Icons from '../components/icons';
 import { Button } from '@/components/ui/button';
 import ShopCard from '../components/ShopCard';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import ProductCard from '../components/productcard';
+import ProductCard from '../components/productGrid';
+
 const items = [
   { imageUrl: "/images/item1.png", title: "Cloths", itemCount: 5 },
   { imageUrl: "/images/hero1.jpg", title: "Cloths", itemCount: 5 },

@@ -2,7 +2,6 @@ import { Product } from "../types"
 
 
 
-
 export const addToCart = (product : Product) => {
     const cart : Product[] = JSON.parse(localStorage.getItem('cart') || '[]')
 

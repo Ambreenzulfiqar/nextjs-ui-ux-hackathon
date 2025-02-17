@@ -2,19 +2,18 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-import CardText from "./card";
 import { client } from "@/sanity/lib/client";
+import CardText from "./card";
+
 
 // Define the Product type
 type Product = {
-  quantity: number;
-  stock: number;
-
-  price: number;
-  id: string;
+  _id: string;
   title: string;
   description: string;
+  price: number;
+  quantity: number;
+  stock: number;
   productImage: string; // The image field from Sanity
 };
 
@@ -23,7 +22,7 @@ export default function ProductCard() {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 8; // Number of products per page
   const [totalProducts, setTotalProducts] = useState(0);
-  const totalPages = Math.ceil(totalProducts / pageSize);
+  const totalPages = totalProducts > 0 ? Math.ceil(totalProducts / pageSize) : 1;
 
   // Fetch products with pagination
   useEffect(() => {
@@ -39,6 +38,8 @@ export default function ProductCard() {
         const query = `*[_type == "product"] | order(_createdAt desc) [${start}...${start + pageSize}]{
           _id,
           title,
+          quantity,
+          stock,
           description,
           price,
           "productImage": productImage.asset->url
@@ -75,12 +76,12 @@ export default function ProductCard() {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px]">
           {products.length > 0 ? (
             products.map((product) => (
-              <Link key={product.id} href={`/product/${product.id}`} passHref>
+              <Link key={product._id} href={`/product/${product._id}`} passHref>
                 <div className="w-[238px] h-[615px] mx-auto cursor-pointer">
                   <div className="w-full h-full">
                     <div className="w-[239px]">
                       <Image
-                        src={product.productImage || "/images/filter.png"} // Fallback image
+                        src={product.productImage || "/images/default-product-image.png"} // Fallback image
                         alt={product.title}
                         width={500}
                         height={500}
@@ -88,10 +89,14 @@ export default function ProductCard() {
                       />
                     </div>
                     <CardText
+                      id={product._id}
                       title={product.title}
                       description={product.description}
                       price={product.price}
-                      image={product.productImage || "/images/default-product-image.png"} id={product.id} quantity={product.quantity} stock={product.stock}                    />
+                      quantity={product.quantity}
+                      stock={product.stock}
+                      image={product.productImage || "/images/default-product-image.png"} 
+                    />
                   </div>
                 </div>
               </Link>
@@ -102,34 +107,36 @@ export default function ProductCard() {
         </div>
 
         {/* Pagination Section */}
-        <div className="flex justify-center items-center gap-4 mt-6">
-          {/* Previous Button */}
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
-              currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
-            }`}
-          >
-            Previous
-          </button>
+        {totalProducts > 0 && (
+          <div className="flex justify-center items-center gap-4 mt-6">
+            {/* Previous Button */}
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
+                currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+              }`}
+            >
+              Previous
+            </button>
 
-          {/* Page Info */}
-          <span className="text-gray-700 text-lg">
-            Page {currentPage} of {totalPages}
-          </span>
+            {/* Page Info */}
+            <span className="text-gray-700 text-lg">
+              Page {currentPage} of {totalPages}
+            </span>
 
-          {/* Next Button */}
-          <button
-            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            disabled={currentPage === totalPages}
-            className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
-              currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
-            }`}
-          >
-            Next
-          </button>
-        </div>
+            {/* Next Button */}
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className={`px-6 py-3 rounded-lg bg-gray-800 text-white ${
+                currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-700"
+              }`}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -27,11 +27,11 @@ interface Product {
   isNew?: boolean;
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string } >}) {
+export default async function ProductPage({ params }: { params: { id: string } }) {
   if (!(await params)?.id) return notFound(); // Ensure params.id exists before fetching
 
   try {
-    const product: Product | null = await client.fetch(query, { id: (await params).id });
+    const product: Product | null = await client.fetch(query, { id:  params.id });
 
     if (!product) return notFound();
 

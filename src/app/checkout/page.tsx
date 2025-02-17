@@ -1,4 +1,3 @@
-// filepath: /d:/Muniba nextjs/class-work and practice/dressing-website/src/app/checkout/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -125,8 +124,8 @@ export default function CheckoutPage() {
       setCartItems([]); // Reset cart state
       localStorage.removeItem("appliedDiscount");
   
-    } catch (error) {
-      console.error("Error creating order:", error);
+    } catch  {
+      console.error("Error creating order:");
     }
   };
 
